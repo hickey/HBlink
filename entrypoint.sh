@@ -17,4 +17,9 @@ if [[ "$cmd" != "" ]]; then
     fi
 fi
 
-exec python ./hblink.py $cmd $@
+config=''
+if [[ -r /etc/hblink.cfg ]]; then
+    config="--config /etc/hblink.cfg"
+fi
+
+exec python ./hblink.py $config $cmd $@
